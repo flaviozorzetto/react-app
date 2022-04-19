@@ -47,7 +47,7 @@ export default class AddNote extends React.Component {
                onChange={this.handleChange}
             ></textarea>
             <footer className="note__card__footer">
-               <p>Escreva acima</p>
+               <p>Write your text above</p>
                <button className="save__button" onClick={this.addNote}>
                   Save
                </button>

@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import Notes from './components/Notes';
 import AddNote from './components/AddNote';
+import FilterBar from './components/FilterBar';
 
 export default class App extends React.Component {
    constructor(props) {
@@ -22,11 +23,17 @@ export default class App extends React.Component {
          'dark-mode':
             localStorage.getItem('dark-mode') == 'true' ? true : false,
          notes: notes,
+         'filter-value': '',
       };
 
       this.handleDarkModeClick = this.handleDarkModeClick.bind(this);
+      this.handleFilterChange = this.handleFilterChange.bind(this);
       this.removeNote = this.removeNote.bind(this);
       this.addNote = this.addNote.bind(this);
+   }
+
+   handleFilterChange(event) {
+      this.setState({ 'filter-value': event.target.value });
    }
 
    removeNote(key) {
@@ -62,10 +69,15 @@ export default class App extends React.Component {
                   darkModeState={this.state['dark-mode']}
                   onDarkModeChange={this.handleDarkModeClick}
                />
+               <FilterBar
+                  value={this.state['filter-value']}
+                  onChangeFunc={this.handleFilterChange}
+               />
                <div className="note__list">
                   <Notes
                      notes={this.state.notes}
                      removeNoteFunc={this.removeNote}
+                     filter={this.state['filter-value']}
                   />
                   <AddNote addNoteFunc={this.addNote} />
                </div>

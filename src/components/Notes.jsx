@@ -1,7 +1,12 @@
 export default function Notes(props) {
    let notesDiv = [];
-   console.log(props);
-   props.notes.forEach(note => {
+   let regex = new RegExp(props.filter, 'gi');
+
+   let filtered = props.notes.filter(note => {
+      return regex.test(note.content);
+   });
+
+   filtered.forEach(note => {
       notesDiv.push(
          <div className="note__card" key={note.id}>
             <div className="note__card__content note__card__scroll">
