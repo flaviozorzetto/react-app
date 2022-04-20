@@ -1,5 +1,10 @@
+function t(event) {
+   console.log(event.target.childNodes);
+}
+
 export default function Notes(props) {
    let notesDiv = [];
+
    let regex = new RegExp(props.filter, 'gi');
 
    let filtered = props.notes.filter(note => {
@@ -9,7 +14,11 @@ export default function Notes(props) {
    filtered.forEach(note => {
       notesDiv.push(
          <div className="note__card" key={note.id}>
-            <div className="note__card__content note__card__scroll">
+            <div
+               className="note__card__content note__card__scroll"
+               data-key={note.id}
+               onDoubleClick={props.openEditMode}
+            >
                <p>{note.content}</p>
             </div>
             <footer className="note__card__footer">
@@ -24,5 +33,6 @@ export default function Notes(props) {
          </div>
       );
    });
+
    return notesDiv;
 }

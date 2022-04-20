@@ -130,7 +130,8 @@ table {
 
 /* End of resets */
 
-body, textarea {
+body,
+textarea {
    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -236,6 +237,7 @@ main {
 
 .note__card {
    display: flex;
+   position: relative;
    justify-content: space-between;
    flex-direction: column;
    min-height: 170px;
@@ -243,6 +245,7 @@ main {
    background: linear-gradient(180deg, #6ad1aa, #0b936a);
    padding: 15px;
    border-radius: 15px;
+   user-select: none;
 }
 
 .note__card__date {
@@ -325,4 +328,24 @@ main {
 .save__button:hover {
    cursor: pointer;
    background-color: rgb(207, 207, 207);
+}
+
+.note__card__editor {
+   position: fixed;
+   z-index: 10;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background-color: rgba(0, 0, 0, 0.636);
+}
+
+.note__card__textarea__editor__mode {
+   height: 140px;
+}
+
+.note__card__editor__mode {
+   max-width: 500px;
+   margin: auto;
+   margin-top: 100px;
 }
