@@ -72,7 +72,6 @@ export default class App extends React.Component {
    }
 
    openEditMode(event) {
-      console.log(event.currentTarget);
       const key = event.currentTarget.dataset.key;
       let content;
       this.state.notes.forEach(note => {
@@ -112,6 +111,12 @@ export default class App extends React.Component {
 
    componentDidMount() {
       window.addEventListener('beforeunload', this.saveLocal);
+      window.addEventListener('storage', e => {
+         const notes = JSON.parse(e.newValue);
+         this.setState({
+            notes: notes,
+         });
+      });
    }
 
    componentWillUnmount() {
